@@ -1,0 +1,25 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  gather_facts: no
+  become: yes
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+  roles:
+    - role: network
+      vars:
+        network: test
+
+    - role: rabbitmq
+      vars:
+        create_dir: true
+        network: test
+        version: 3.7.14-management
+
+    - role: mongodb
+      vars:
+        create_dir: true
+        network: test
+        version: 4.1.10
+
+

@@ -1,0 +1,27 @@
+---
+#task for install RMQ
+- name: Create work dir for RMQ
+  file:
+    path: /opt/rabbitmq
+    state: directory
+    mode: 0755
+    group: docker
+  when: create_dir == true
+
+- name: Run docker with RMQ
+  docker_container:
+    name: rmq
+    hostname: rabbitmq
+    image:  rabbitmq:{{ version }}
+    restart_policy: unless-stopped
+    state: started
+    network_mode: bridge
+    networks:
+     - name: "{{ network }}"
+    volumes:
+     - "/opt/rabbitmq:/var/lib/rabbitmq"
+    ports:
+     - "8080:15672"
+    env:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin

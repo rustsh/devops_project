@@ -1,0 +1,5 @@
+---
+#task for create docker network
+- name: "Create a docker network: {{ network }}"
+  docker_network:
+    name: "{{ network }}"
