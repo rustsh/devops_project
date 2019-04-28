@@ -1,0 +1,86 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+  vars:
+    docker_version: 18.09.4
+
+  tasks:
+    - name: Upgrade CentOS and all packages
+      yum:
+        name: '*'
+        state: latest
+      notify:
+        - Reboot machine
+
+    - name: Stop and disable firewalld
+      service:
+        name: firewalld
+        state: stopped
+        enabled: no
+
+    - name: Disable SELinux
+      selinux:
+        state: disabled
+      notify:
+        - Reboot machine
+
+    - name: Copy script for install pip
+      get_url:
+        url: https://bootstrap.pypa.io/get-pip.py
+        dest: /tmp
+
+    - name: Install pip
+      command: "python /tmp/get-pip.py"
+
+    - name: Install docker-py
+      pip:
+        name: docker-py
+
+    - name: Uninstall old Docker and dependences
+      yum:
+        name:
+          - docker
+          - docker-client
+          - docker-client-latest
+          - docker-common
+          - docker-latest
+          - docker-latest-logrotate
+          - docker-logrotate
+          - docker-engine
+        state: removed
+        update_cache: true
+
+    - name: Install utils for add Docker repo
+      yum:
+        name:
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: latest
+        update_cache: true
+
+    - name: Configuring docker-ce repo
+      yum_repository:
+        name: docker-ce
+        description: EPEL YUM repo
+        enabled: yes
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        gpgcheck: yes
+
+    - name: Install Docker
+      yum:
+        name: docker-ce-{{ docker_version }}
+        state: present
+        update_cache: true
+
+    - name: Start Docker and make it enabled
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: Reboot machine
+      reboot:
