@@ -1,2 +1,10 @@
 ansible.cfg
 hosts
+*.retry
+vault.key
+variables.json
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
