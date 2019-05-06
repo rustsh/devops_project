@@ -20,6 +20,3 @@
      - name: "{{ network }}"
     volumes:
      - "/opt/mongodb:/data/db"
-    env:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin

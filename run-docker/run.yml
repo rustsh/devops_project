@@ -22,4 +22,12 @@
         network: test
         version: 4.1.10
 
+    - role: crawler-ui
+      vars:
+        network: test
+        version: latest
 
+    - role: crawler-app
+      vars:
+        network: test
+        version: latest
