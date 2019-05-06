@@ -1,0 +1,15 @@
+[defaults]
+inventory = ./inventory
+remote_user = user
+private_key_file = ~/.ssh/user
+
+# Отключим проверку SSH Host-keys
+host_key_checking = False
+
+# Отключим создание *.retry-файлов
+retry_files_enabled = False
+
+# Явно укажем расположение ролей
+roles_path = ./roles
+
+display_skipped_hosts = no
