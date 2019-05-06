@@ -1,0 +1,9 @@
+[app]
+prod-srv ansible_host=0.0.0.0
+stage-srv ansible_host=0.0.0.0
+
+[ci]
+ci-srv ansible_host=0.0.0.0
+
+[monitor]
+monitor-srv ansible_host=0.0.0.0
