@@ -21,7 +21,20 @@
     volumes:
      - "/opt/rabbitmq:/var/lib/rabbitmq"
     ports:
-     - "8080:15672"
+     - "15672:15672"
     env:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+
+- name: Delay 1 min for wait when run RMQ
+  pause:
+    minutes: 1
+
+- name: add queue
+  rabbitmq_queue:
+    name: urls
+    login_user: admin
+    login_password: admin
+    login_host: localhost
+    durable: no
+  when: create_queue == true

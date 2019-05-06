@@ -10,3 +10,5 @@ variables.json
 *.tfvars
 .terraform/
 crash.log
+crawler
+.vscode
