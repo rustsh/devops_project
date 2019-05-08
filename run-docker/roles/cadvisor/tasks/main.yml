@@ -1,0 +1,19 @@
+---
+#task for install cadvisor
+- name: Run docker with cadvisor
+  docker_container:
+    name: cadvisor
+    image:  google/cadvisor:{{ version }}
+    restart_policy: unless-stopped
+    state: started
+    network_mode: bridge
+    networks:
+     - name: "{{ network }}"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:rw"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+    ports:
+    - "8080:8080"
+

@@ -1,0 +1,35 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  gather_facts: no
+  become: yes
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  roles:
+    - role: network
+      vars:
+        network: test
+
+    - role: prometheus
+      vars:
+        create_dir: true
+        copy_config: true
+        network: test
+        version: v2.9.2
+
+    - role: grafana
+      vars:
+        create_dir: true
+        network: test
+        version: 6.1.6
+
+    - role: node-exporter
+      vars:
+        network: test
+        version: v0.17.0
+
+    - role: cadvisor
+      vars:
+        network: test
+        version: v0.33.0
