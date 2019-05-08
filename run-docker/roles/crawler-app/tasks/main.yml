@@ -1,0 +1,18 @@
+---
+#task for install Crawler-UI
+- name: Run docker with Crawler-App
+  docker_container:
+    name: crawler-app
+    image: "gryaznovart186/crawler-app:{{ version }}"
+    restart_policy: unless-stopped
+    state: started
+    network_mode: bridge
+    networks:
+     - name: "{{ network }}"
+    env:
+      MONGO=mongodb
+      MONGO_PORT=27017
+      RMQ_HOST=rmq
+      RMQ_QUEUE=urls
+      RMQ_USERNAME=admin
+      RMQ_PASSWORD=admin

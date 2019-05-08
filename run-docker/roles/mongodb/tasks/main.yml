@@ -1,0 +1,22 @@
+---
+#task for install mongodb
+- name: Create work dir for mongodb
+  file:
+    path: /opt/mongodb
+    state: directory
+    mode: 0755
+    group: docker
+  when: create_dir == true
+
+- name: Run docker with mongodb
+  docker_container:
+    name: mongodb
+    hostname: mongodb
+    image:  mongo:{{ version }}
+    restart_policy: unless-stopped
+    state: started
+    network_mode: bridge
+    networks:
+     - name: "{{ network }}"
+    volumes:
+     - "/opt/mongodb:/data/db"

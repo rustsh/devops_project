@@ -35,7 +35,10 @@
 
     - name: Install docker-py
       pip:
-        name: docker-py
+        name: "{{ item }}"
+      loop:
+        - requests
+        - docker-py
 
     - name: Uninstall old Docker and dependences
       yum:
