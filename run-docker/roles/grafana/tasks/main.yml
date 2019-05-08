@@ -1,0 +1,26 @@
+---
+#task for install cadvisor
+- name: Create work dir for grafana
+  file:
+    path: /opt/grafana
+    state: directory
+    mode: 0777
+    owner: 1000
+    group: docker
+  when: create_dir == true
+
+- name: Run docker with grafana
+  docker_container:
+    name: grafana
+    image:  grafana/grafana:{{ version }}
+    restart_policy: unless-stopped
+    recreate: yes
+    state: started
+    network_mode: bridge
+    networks:
+     - name: "{{ network }}"
+    volumes:
+      - "/opt/grafana:/var/lib/grafana"
+    ports:
+    - "3000:3000"
+
