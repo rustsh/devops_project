@@ -7,7 +7,7 @@
 - name: Install Gitlab runner
   docker_container:
     name: gitlab-runner
-    image: "{{ gitlab_image }}"
+    image: "{{ gitlab_runner_image }}"
     state: started
     volumes:
       - "{{ gitlab_runner_config_dir }}:/etc/gitlab-runner"
