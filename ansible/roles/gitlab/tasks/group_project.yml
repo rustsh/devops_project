@@ -1,0 +1,32 @@
+---
+- name: Install python-gitlab
+  pip:
+    name: "{{ item }}"
+  loop:
+    - python-gitlab
+    - pyapi-gitlab
+
+
+- name: Create Gitlab Group
+  gitlab_group:
+    server_url: "http://{{ ansible_host }}"
+    login_user: root
+    login_password: password
+    name: ansibletest
+    path: ansibletest
+    state: present
+  delegate_to: localhost
+
+
+- name: Create Gitlab Project in group Ansible
+  gitlab_project:
+    server_url: "http://{{ ansible_host }}"
+    validate_certs: no
+    login_user: root
+    login_password: password
+    name: my_first_project
+    group: devops
+    state: present
+  delegate_to: localhost
+  tags:
+    - group

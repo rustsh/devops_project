@@ -2,3 +2,4 @@
 # tasks file for gitlab
 - include: install_gitlab.yml
 - include: install_runner.yml
+#- include: register_runner.yml

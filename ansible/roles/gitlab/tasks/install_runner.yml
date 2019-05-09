@@ -13,10 +13,3 @@
       - "{{ gitlab_runner_config_dir }}:/etc/gitlab-runner"
       - /var/run/docker.sock:/var/run/docker.sock
     restart_policy: always
-
-# - name: Register Gitlab runner
-#   shell: >
-#     docker exec -it gitlab-runner gitlab-runner register --run-untagged
-#     --locked=false --name {{inventory_hostname}} --url http://35.228.22.67/
-#     --registration-token {{gitlab_token}} --executor docker --docker-image ubuntu:16.04
-#     -n --docker-volumes /var/run/docker.sock:/var/run/docker.sock 
