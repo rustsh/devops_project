@@ -26,3 +26,6 @@
 #### gryaznovart186
 * Подготовлены асибл роли для установки ПО мониторинга (prometheus,node-exporter,cadvisor,grafana)
 * роли протестированы локально
+## 09.05.2019
+#### rustsh
+* Создана Ansible-роль **gitlab** для установки и запуска Gitlab и раннера. 
