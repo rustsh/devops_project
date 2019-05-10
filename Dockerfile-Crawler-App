@@ -7,5 +7,6 @@ COPY . ./
 
 ENV CHECK_INTERVAL 10
 ENV EXCLUDE_URLS '.*github.com'
+EXPOSE 8000
 
 CMD ["python", "-u", "crawler/crawler.py", "https://vitkhab.github.io/search_engine_test_site/"]

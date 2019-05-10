@@ -29,6 +29,11 @@
         network: test
         version: v0.17.0
 
+    - role: rmq-exporter
+      vars:
+        network: test
+        version: v1.0.0-RC6.1
+
     - role: cadvisor
       vars:
         network: test
