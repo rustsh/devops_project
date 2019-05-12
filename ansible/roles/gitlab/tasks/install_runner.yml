@@ -1,0 +1,15 @@
+---
+- name: Create Gitlab runner directories
+  file:
+    path: "{{ gitlab_runner_config_dir }}"
+    state: directory
+
+- name: Install Gitlab runner
+  docker_container:
+    name: gitlab-runner
+    image: "{{ gitlab_runner_image }}"
+    state: started
+    volumes:
+      - "{{ gitlab_runner_config_dir }}:/etc/gitlab-runner"
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart_policy: always
