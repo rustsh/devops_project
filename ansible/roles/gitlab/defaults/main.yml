@@ -1,0 +1,12 @@
+---
+# defaults file for gitlab
+
+# Gitlab
+gitlab_config_dir: /srv/gitlab/config
+gitlab_logs_dir: /srv/gitlab/logs
+gitlab_data_dir: /srv/gitlab/data
+gitlab_image: gitlab/gitlab-ce:latest
+
+# Gitlab runner
+gitlab_runner_config_dir: /srv/gitlab-runner/config
+gitlab_runner_image: gitlab/gitlab-runner:latest
