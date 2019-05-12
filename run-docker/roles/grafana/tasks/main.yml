@@ -14,7 +14,6 @@
     name: grafana
     image:  grafana/grafana:{{ version }}
     restart_policy: unless-stopped
-    recreate: yes
     state: started
     network_mode: bridge
     networks:

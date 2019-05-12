@@ -18,5 +18,7 @@
     network_mode: bridge
     networks:
      - name: "{{ network }}"
+    ports:
+      - 27017:27017
     volumes:
      - "/opt/mongodb:/data/db"

@@ -1,0 +1,17 @@
+---
+#task for install rmq-exporter
+- name: Run docker with rmq-exporter
+  docker_container:
+    name: rmq-exporter
+    image:  kbudde/rabbitmq-exporter:{{ version }}
+    restart_policy: unless-stopped
+    state: started
+    network_mode: bridge
+    networks:
+     - name: "{{ network }}"
+    env:
+      RABBIT_URL: "http://rmq:15672"
+      RABBIT_USER: admin
+      RABBIT_PASSWORD: admin
+
+

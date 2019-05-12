@@ -30,3 +30,8 @@
 #### rustsh
 * Создана Ansible-роль **gitlab** для установки и запуска Gitlab и раннера
 * Создан плейбук для регистрации раннера
+## 10.05.2019
+#### gryaznovart186
+* Подключены в prometheus.yml конфиге к мониторингу ВМ, докеры, RMQ, Crawler
+* Подготовлены дашборды в grafana: Dockerhost, RMQ, Crawler
+* Json c дашбордами для импорта в grafana добавлены в grafana-dashboards
