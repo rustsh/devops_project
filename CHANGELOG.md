@@ -26,3 +26,8 @@
 #### gryaznovart186
 * Подготовлены асибл роли для установки ПО мониторинга (prometheus,node-exporter,cadvisor,grafana)
 * роли протестированы локально
+## 10.05.2019
+#### gryaznovart186
+* Подключены в prometheus.yml конфиге к мониторингу ВМ, докеры, RMQ, Crawler
+* Подготовлены дашборды в grafana: Dockerhost, RMQ, Crawler
+* Json c дашбордами для импорта в grafana добавлены в grafana-dashboards
