@@ -13,5 +13,6 @@
       RABBIT_URL: "http://rmq:15672"
       RABBIT_USER: admin
       RABBIT_PASSWORD: admin
-
+    ports:
+       - "9419:9419"
 

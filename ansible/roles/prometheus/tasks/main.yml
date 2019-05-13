@@ -16,6 +16,14 @@
   when: copy_config == true
   notify: restart_container
 
+- name: Copy alerts file
+  copy:
+    src: alerts.yml
+    dest: /opt/prometheus/
+    group: docker
+  when: copy_config == true
+  notify: restart_container
+
 - name: Run docker with prometheus
   docker_container:
     name: promet
@@ -27,5 +35,6 @@
      - name: "{{ network }}"
     volumes:
      - "/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+     - "/opt/prometheus/alerts.yml:/etc/prometheus/alerts.yml"
     ports:
      - "9090:9090"

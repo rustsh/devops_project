@@ -15,12 +15,26 @@
         network: test
         version: v2.9.2
 
+    - role: alertmanager
+      vars:
+        create_dir: true
+        copy_config: true
+        network: test
+        version: v0.17.0
+
     - role: grafana
       vars:
         create_dir: true
         network: test
         version: 6.1.6
 
+- hosts: prod
+  gather_facts: no
+  become: yes
+  roles:
+    - role: network
+      vars:
+        network: test
     - role: node-exporter
       vars:
         network: test
