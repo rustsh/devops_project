@@ -9,9 +9,9 @@
   when: create_dir == true
 
 - name: Copy config file
-  copy:
-    src: prometheus.yml
-    dest: /opt/prometheus
+  template:
+    src: prometheus.yml.j2
+    dest: /opt/prometheus/prometheus.yml
     group: docker
   when: copy_config == true
   notify: restart_container
