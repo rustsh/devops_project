@@ -10,24 +10,24 @@ scrape_configs:
   - job_name: 'node'
     static_configs:
       - targets:
-        - 'node-exporter:9100'
+        - "http://{{ groups['prod'][0] }}:9100"
 
   - job_name: 'rmq'
     static_configs:
       - targets:
-        - 'rmq-exporter:9419'
+        - "http://{{ groups['prod'][0] }}:9419"
 
   - job_name: 'cadvisor'
     static_configs:
       - targets:
-        - 'cadvisor:8080'
+        - "http://{{ groups['prod'][0] }}:8080"
 
   - job_name: 'crawler-ui'
     static_configs:
       - targets:
-        - 'crawler-ui:8000'
+        - "http://{{ groups['prod'][0] }}:8000"
 
   - job_name: 'crawler-app'
     static_configs:
       - targets:
-        - 'crawler-app:8000'
+        - "http://{{ groups['prod'][0] }}:8000"

@@ -13,3 +13,6 @@ retry_files_enabled = False
 roles_path = ./roles
 
 display_skipped_hosts = no
+
+[colors]
+verbose = cyan

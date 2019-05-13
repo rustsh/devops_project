@@ -1,10 +1,7 @@
 ---
-- hosts: 127.0.0.1
-  connection: local
+- hosts: app
   gather_facts: no
   become: yes
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
   roles:
     - role: network
       vars:
@@ -23,12 +20,12 @@
         network: test
         version: 4.1.10
 
-    - role: crawler-ui
-      vars:
-        network: test
-        version: latest
+    # - role: crawler-ui
+    #   vars:
+    #     network: test
+    #     version: latest
 
-    - role: crawler-app
-      vars:
-        network: test
-        version: latest
+    # - role: crawler-app
+    #   vars:
+    #     network: test
+    #     version: latest
