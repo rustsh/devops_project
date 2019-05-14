@@ -1,6 +1,6 @@
 ---
 global:
-  slack_api_url: 'https://hooks.slack.com/services/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'
+  slack_api_url: '<your-webhook-url>'
 
 route:
   receiver: 'slack-notifications'
@@ -8,4 +8,4 @@ route:
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - channel: '#rustam_shaimardanov'
+  - channel: '<your-channel-name>'
