@@ -1,0 +1,11 @@
+---
+global:
+  slack_api_url: 'https://hooks.slack.com/services/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'
+
+route:
+  receiver: 'slack-notifications'
+
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#rustam_shaimardanov'
