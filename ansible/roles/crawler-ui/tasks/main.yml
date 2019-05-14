@@ -3,7 +3,7 @@
 - name: Run docker with Crawler-UI
   docker_container:
     name: crawler-ui
-    image: "gryaznovart186/crawler-ui:{{ version }}"
+    image: "rustsh/crawler-ui:{{ version }}"
     restart_policy: unless-stopped
     state: started
     network_mode: bridge
