@@ -3,7 +3,6 @@
   gather_facts: no
   become_user: "{{ runner_user }}"
   roles:
-    roles:
     - role: network
       vars:
         network: test

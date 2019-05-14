@@ -1,0 +1,6 @@
+---
+- include: initial.yml
+- include: gitlab.yml
+- include: monitoring.yml
+- include: create_user.yml
+- include: rqm_mongo.yml

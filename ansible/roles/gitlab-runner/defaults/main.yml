@@ -1,0 +1,4 @@
+---
+# defaults file for gitlab-runner
+gitlab_runner_config_dir: /srv/gitlab-runner/config
+gitlab_runner_image: gitlab/gitlab-runner:latest

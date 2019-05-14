@@ -1,0 +1,9 @@
+---
+- name: Install Gitlab
+  hosts: ci
+  gather_facts: no
+  become: true
+  roles:
+    - role: gitlab-runner
+      vars:
+        registration_token: <put_your_token_here>

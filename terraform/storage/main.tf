@@ -5,5 +5,6 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "backend-store" {
-  name = "devops-project-storage-bucket"
+  name          = "devops-project-storage-bucket"
+  force_destroy = true
 }

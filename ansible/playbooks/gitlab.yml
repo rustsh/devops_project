@@ -1,6 +1,7 @@
 ---
 - name: Install Gitlab
   hosts: ci
+  gather_facts: no
   become: true
   roles:
     - gitlab

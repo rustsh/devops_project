@@ -1,0 +1,61 @@
+image: docker:latest
+
+stages:
+  - build
+  - test
+  - stage
+  - production
+
+variables:
+  MONGO: mongodb
+  MONGO_PORT: 27017
+  DOCKER_DRIVER: overlay2
+
+build_ui:
+  stage: build
+  services:
+    - docker:dind
+  script:
+    - echo 'Building'
+    - docker build -t $DOCKER_REGISTRY_USER/crawler-ui:latest .
+    - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
+    - docker push $DOCKER_REGISTRY_USER/crawler-ui:latest && docker image rm $DOCKER_REGISTRY_USER/crawler-ui:latest
+
+test_ui:
+  stage: test
+  services:
+    - docker:dind
+  script:
+    - echo 'Test'
+    - docker run $DOCKER_REGISTRY_USER/crawler-ui:latest python -m unittest discover -s tests/
+
+staging_ui:
+  stage: stage
+  script:
+    - echo 'Publish to stage'
+    - apk update && apk add openssh
+    - >
+      ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no $DEPLOY_USER@$STAGE_VM
+      "docker stop crawler-ui || true &&
+      docker run -d --rm --name crawler-ui -p 8000:8000 --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
+      $DOCKER_REGISTRY_USER/crawler-ui:latest"
+  environment: 
+    name: stage
+    url: http://$STAGE_VM:8000
+
+production_ui:
+  stage: production
+  when: manual
+  script:
+    - echo 'Publish to prod'
+    - apk update && apk add openssh
+    - >
+      ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no $DEPLOY_USER@$PROD_VM
+      "docker stop crawler-ui || true &&
+      docker run -d --rm --name crawler-ui -p 8000:8000 --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
+      $DOCKER_REGISTRY_USER/crawler-ui:latest"
+  only:
+    - master
+  environment:
+    name: production
+    url: http://$PROD_VM:8000
