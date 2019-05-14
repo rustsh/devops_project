@@ -11,6 +11,7 @@
 - name: Install Gitlab container
   docker_container:
     name: gitlab
+    hostname: "{{ ansible_host }}"
     image: "{{ gitlab_image }}"
     state: started
     ports:
@@ -22,6 +23,9 @@
       - "{{ gitlab_logs_dir }}:/var/log/gitlab"
       - "{{ gitlab_data_dir }}:/var/opt/gitlab"
     restart_policy: always
+    network_mode: bridge
+    networks:
+     - name: gitlab
     env:
       GITLAB_OMNIBUS_CONFIG: |
         "external_url 'http://{{ ansible_host }}'"

@@ -24,7 +24,7 @@ resource "google_compute_firewall" "firewall_devops_monitor" {
   allow {
     protocol = "tcp"
 
-    ports = ["3000", "9200", "5601", "24224", "80", "443", "22", "2222"]
+    ports = ["9090","3000", "9100", "9419", "8080", "80", "443", "22", "2222"]
   }
 
   source_ranges = ["0.0.0.0/0"]

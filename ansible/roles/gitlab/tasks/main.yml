@@ -1,5 +1,6 @@
 ---
 # tasks file for gitlab
+- include: create_network.yml
 - include: install_gitlab.yml
 - include: install_runner.yml
-#- include: register_runner.yml
+- include: register_runner.yml

@@ -1,15 +1,16 @@
 ---
 - name: Register Gitlab runner
   shell: >
-    docker run --rm -t -i -v {{ gitlab_runner_config_dir }}:/etc/gitlab-runner gitlab/gitlab-runner register
+    docker run --network=gitlab --rm -t -i -v {{ gitlab_runner_config_dir }}:/etc/gitlab-runner gitlab/gitlab-runner register
     --non-interactive
     --executor "docker"
     --docker-image alpine:latest
-    --url "http://{{ ansible_host }}"
-    --registration-token "PUT_YOUR_GITLAB_TOKEN_HERE"
+    --url "http://{{ ansible_host }}/"
+    --registration-token "TbqSww3D22hkT3CuHWRt"
     --description "docker-runner"
     --tag-list "docker,linux"
     --run-untagged="true"
     --locked="false"
+    --docker-privileged="true"
   tags:
     - register

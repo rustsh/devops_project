@@ -13,3 +13,6 @@
       - "{{ gitlab_runner_config_dir }}:/etc/gitlab-runner"
       - /var/run/docker.sock:/var/run/docker.sock
     restart_policy: always
+    network_mode: bridge
+    networks:
+     - name: gitlab
