@@ -1,4 +1,0 @@
----
-- name: "Create a docker network for Gitlab"
-  docker_network:
-    name: gitlab

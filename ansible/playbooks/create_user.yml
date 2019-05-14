@@ -1,0 +1,51 @@
+---
+- name: Create deploy user on servers
+  hosts:
+    - app
+    - ci
+  gather_facts: no
+  become: yes
+  
+  tasks:
+    - name: Create deploy user
+      user:
+        name: "{{ runner_user }}"
+        groups:
+          - wheel
+          - docker
+
+- name: Create SSH keys for deploy user
+  hosts: ci
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Install pexpect
+      pip:
+        name: pexpect
+
+    - name: Create SSH key if it does not exist
+      become_user: "{{ runner_user }}"
+      expect:
+        command: ssh-keygen -t rsa
+        # only creates the key if the file does not exist
+        creates: "/home/{{ runner_user }}/.ssh/id_rsa"
+        responses:
+          "file": "/home/{{ runner_user }}/.ssh/id_rsa"
+          "passphrase": ""
+
+- name: Add deploy key to authorized keys
+  hosts: app
+  gather_facts: no
+  become: yes
+    
+  tasks:
+    - name: Read public key
+      command: "cat /home/{{ runner_user }}/.ssh/id_rsa.pub"
+      register: runner_pub_key
+      delegate_to: "{{ groups['ci'][0] }}"
+
+    - name: Add deploy key to authorized keys
+      authorized_key:
+        user: "{{ runner_user }}"
+        key: "{{ runner_pub_key.stdout }}"

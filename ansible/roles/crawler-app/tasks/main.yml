@@ -1,9 +1,9 @@
 ---
-#task for install Crawler-UI
+#task for install Crawler-App
 - name: Run docker with Crawler-App
   docker_container:
     name: crawler-app
-    image: "gryaznovart186/crawler-app:{{ version }}"
+    image: "rustsh/crawler-app:{{ version }}"
     restart_policy: unless-stopped
     state: started
     network_mode: bridge

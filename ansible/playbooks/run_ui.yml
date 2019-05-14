@@ -1,0 +1,14 @@
+---
+- name: Publish ui
+  gather_facts: no
+  become_user: "{{ runner_user }}"
+  roles:
+    - role: network
+      vars:
+        network: test
+
+    - role: crawler-ui
+      vars:
+        network: test
+        version: latest
+
