@@ -14,16 +14,16 @@ Authors: rustsh & gryaznovart186
 ## О проекте <a name="about"></a>
 Данный проект позволяет развернуть приложение Crawler в облачной инфраструктуре.
 
-#### Используемые инструменты <a name="instruments"></a>
-1. Создание инфраструктуры — Terraform.
-2. Конфигурирование инфраструктуры — Ansible.
-3. Процесс CI/CD — Gitlab.
+### Используемые инструменты <a name="instruments"></a>
+1. Создание инфраструктуры — [Terraform](https://www.terraform.io/).
+2. Конфигурирование инфраструктуры — [Ansible](https://www.ansible.com/).
+3. Процесс CI/CD — [Gitlab](https://about.gitlab.com/).
 4. Процесс сбора обратной связи:
-    - сбор метрик — Prometheus;
-    - визуализация — Grafana;
-    - алертинг — Alertmanager + Slack.
+    - сбор метрик — [Prometheus](https://prometheus.io/);
+    - визуализация — [Grafana](https://grafana.com/);
+    - алертинг — [Alertmanager](https://prometheus.io/docs/alerting/alertmanager/) + [Slack](https://slack.com/intl/en-ru/).
 
-#### Результат выполнения проекта <a name="result"></a>
+### Результат выполнения проекта <a name="result"></a>
 1. Созданная в Google Cloud Platform инфраструктура:
     - хранилище state-файлов;
     - виртуальные машины для тестового и рабочего окружений, сервера CI/CD и системы сбора обратной связи с внешними статическими IP-адресами;
@@ -45,7 +45,7 @@ Authors: rustsh & gryaznovart186
     - визуализация при помощи Grafana;
     - алертинг и отправка оповещений в канал Slack.
 
-#### Репозитории приложения <a name="repos"></a>
+### Репозитории приложения <a name="repos"></a>
 - [crawler](https://github.com/rustsh/search_engine_crawler)
 - [ui](https://github.com/rustsh/search_engine_ui)
 
