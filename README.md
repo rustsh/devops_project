@@ -41,7 +41,7 @@ Authors: rustsh & gryaznovart186
 - [terraform](terraform) — папка со скриптами Terraform. [Подробное описание](terraform/README.md);
 - [ansible](ansible) — папка с плейбуками и ролями Ansible. [Подробное описание](ansible/README.md);
 - [grafana-dashboards](grafana-dashboards) — папка с дашбордами Grafana в виде JSON-файлов;
-- [app-files](app-files) — папка с файлами для создания контейнеров приложения и запуска конвейера CI/CD в Gitlab. [Описание конвейера](app-files/README.md);
+- [app-files](app-files) — папка с файлами для создания контейнеров приложения и запуска конвейера CI/CD в Gitlab. [Описание файлов](app-files/README.md);
 - [readme](readme) — папка с описанием шагов запуска проекта.
 
 ## Запуск проекта <a name="run"></a>
