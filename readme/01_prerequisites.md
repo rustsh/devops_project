@@ -10,8 +10,13 @@
     ```bash
     $ gcloud auth application-default login
     ```
-  
-Следующий шаг: [Создание инфраструктуры](02_infrastructure.md)  
+
+<br/>
+
+Следующий шаг: [Создание инфраструктуры](02_infrastructure.md)
+
 Предыдущий шаг: [Требования](00_requirements.md)
-  
-[Главная страница](../README.md)
+
+<br/>
+
+[Вернуться на главную страницу](../README.md)
