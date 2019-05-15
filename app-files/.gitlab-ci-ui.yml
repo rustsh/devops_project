@@ -37,7 +37,8 @@ staging_ui:
     - >
       ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no $DEPLOY_USER@$STAGE_VM
       "docker stop crawler-ui || true &&
-      docker run -d --rm --name crawler-ui -p 8000:8000 --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
+      docker rm crawler-ui || true &&
+      docker run -d --restart=always --name crawler-ui -p 8000:8000 --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
       $DOCKER_REGISTRY_USER/crawler-ui:latest"
   environment: 
     name: stage
@@ -52,7 +53,8 @@ production_ui:
     - >
       ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no $DEPLOY_USER@$PROD_VM
       "docker stop crawler-ui || true &&
-      docker run -d --rm --name crawler-ui -p 8000:8000 --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
+      docker rm crawler-ui || true &&
+      docker run -d --restart=always --name crawler-ui -p 8000:8000 --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
       $DOCKER_REGISTRY_USER/crawler-ui:latest"
   only:
     - master

@@ -39,7 +39,8 @@ staging_app:
     - >
       ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no $DEPLOY_USER@$STAGE_VM
       "docker stop crawler-app || true &&
-      docker run -d --rm --name crawler-app --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
+      docker rm crawler-app || true &&
+      docker run -d --restart=always --name crawler-app --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
       -e RMQ_HOST=$RMQ_HOST -e RMQ_QUEUE=$RMQ_QUEUE -e RMQ_USERNAME=$RMQ_USERNAME -e RMQ_PASSWORD=$RMQ_PASSWORD
       $DOCKER_REGISTRY_USER/crawler-app:latest"
   environment: 
@@ -55,7 +56,8 @@ production_app:
     - >
       ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no $DEPLOY_USER@$PROD_VM
       "docker stop crawler-app || true &&
-      docker run -d --rm --name crawler-app --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
+      docker rm crawler-app || true &&
+      docker run -d --restart=always --name crawler-app --network=test -e MONGO=$MONGO -e MONGO_PORT=$MONGO_PORT
       -e RMQ_HOST=$RMQ_HOST -e RMQ_QUEUE=$RMQ_QUEUE -e RMQ_USERNAME=$RMQ_USERNAME -e RMQ_PASSWORD=$RMQ_PASSWORD
       $DOCKER_REGISTRY_USER/crawler-app:latest"
   only:
