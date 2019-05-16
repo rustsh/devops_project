@@ -1,5 +1,5 @@
 ---
-#task for install prometheus
+#task for install alertmanager
 - name: Create work dir for alert
   file:
     path: /opt/alertmanager
