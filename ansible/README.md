@@ -6,7 +6,7 @@
 ## Плейбуки <a name="playbooks"></a>
 Плейбуки перечислены в порядке выполнения в проекте.
 
-#### start.yml
+### start.yml
 Последовательно запускает плейбуки:
 - initial.yml;
 - gitlab.yml;
@@ -14,17 +14,17 @@
 - create_user.yml;
 - rqm_mongo.yml.
 
-#### initial.yml
+### initial.yml
 На всех машинах выполняется:
 - обновление системы и установленных пакетов;
 - отключение firewalld и SELinux;
 - установка и запуск Docker;
 - перезагрузка сервера.
 
-#### gitlab.yml
+### gitlab.yml
 Выполняет роль gitlab на сервере **ci**.
 
-#### monitoring.yml
+### monitoring.yml
 Выполняет роли на сервере **monitor**:
 - network
 - prometheus
@@ -37,25 +37,25 @@
 - rmq-exporter
 - cadvisor
 
-#### create_user.yml
+### create_user.yml
 Состоит из трёх плеев:
 - на серверах **ci**, **stage** и **prod** создаёт пользователя для деплоя приложения. Имя пользователя задаётся в переменной `runner_user` в файле **group_vars/all**;
 - создаёт пару SSH-ключей для созданного пользователя на сервере **ci**;
 - записывает открытый ключ этого пользователя в файл **authorized_keys** на серверах **stage** и **prod**.
 
-#### rqm_mongo.yml
+### rqm_mongo.yml
 Выполняет роли на серверах **stage** и **prod**:
 - network
 - rabbitmq
 - mongodb
 
-#### gitlab-runner.yml
+### gitlab-runner.yml
 Выполняет роль gitlab-runner на сервере **ci**.
 
-#### run-crawler.yml
+### run-crawler.yml
 Выполняет роль crawler-app. В проекте не используется.
 
-#### run-ui.yml
+### run-ui.yml
 Выполняет роль crawler-ui. В проекте не используется.
 
 ## Роли <a name="roles"></a>
@@ -69,24 +69,24 @@
 
 Если в роли дополнительно используются другие переменные, они перечислены в описании конкретной роли.
 
-#### alertmanager
+### alertmanager
 - Запускает контейнер с Alertmanager;
 - копирует на сервер файл **alertmanager.yml** с конфигурацией Alertmanager. Перед выполнением роли в этот файл необходимо подставить webhook URL и название канала в Slack, в который будут приходить оповещения.
 
-#### cadvisor
+### cadvisor
 Запускает контейнер с cAdvisor.
 
-#### crawler-app
+### crawler-app
 Запускает контейнер с приложением crawler.
 
 В данном проекте не используется. Сохранён на случай, если получится подружить раннер Gitlab'а и Ansible.
 
-#### crawler-ui
+### crawler-ui
 Запускает контейнер с приложением ui.
 
 В данном проекте не используется. Сохранён на случай, если получится подружить раннер Gitlab'а и Ansible.
 
-#### gitlab
+### gitlab
 - Создаёт папки для монтирования к docker-контейнеру с Gitlab;
 - запускает контейнер с Gitlab.
 
@@ -98,7 +98,7 @@
 
 Если монтировать порт 22 контейнера к порту 22 сервера, то запуск контейнера падает с ошибкой, так как этот порт уже занимает Ansible. Поэтому на стороне сервера нужно выбрать другой порт, например, 2222. Этот порт указан в переменной окружения `GITLAB_OMNIBUS_CONFIG` путём добавления в неё строки `gitlab_rails['gitlab_shell_ssh_port'] = 2222`.
 
-#### gitlab-runner
+### gitlab-runner
 - Создаёт папку для монтирования к docker-контейнеру с раннером Gitlab'а;
 - запускает контейнер c раннером Gitlab'а;
 - регистрирует раннер.
@@ -111,21 +111,21 @@
 
 Перед выполнением роли необходимо подставить регистрационный токен в переменную `registration_token` в плейбуке gitlab-runner.yml.
 
-#### grafana
+### grafana
 - Создаёт папку для монтирования к docker-контейнеру с Grafana;
 - запускает контейнер с Grafana.
 
-#### mongodb
+### mongodb
 - Создаёт папку для монтирования к docker-контейнеру с MongoDB;
 - запускает контейнер с MongoDB.
 
-#### network
+### network
 Создаёт docker-сеть.
 
-#### node-exporter
+### node-exporter
 Запускает контейнер с Node Exporter.
 
-#### prometheus
+### prometheus
 - Создаёт папку для монтирования к docker-контейнеру с Prometheus;
 - создаёт на сервере файл **prometheus.yml** из шаблона **prometheus.yml.j2**;
 - копирует на сервер файл **alerts.yml**
@@ -133,7 +133,7 @@
 
 В файле **prometheus.yml.j2** шаблонизирован IP-адрес сервера рабочего окружения.
 
-#### rabbitmq
+### rabbitmq
 - Создаёт папку для монтирования к docker-контейнеру с RabbitMQ;
 - запускает контейнер с RabbitMQ;
 - ждёт одну минуту, чтобы убедиться, что RabbitMQ запущен;
@@ -141,7 +141,7 @@
 
 Здесь задаются логин и пароль для доступа к RabbitMQ: **admin** для обоих значений.
 
-#### rmq-exporter
+### rmq-exporter
 Запускает контейнер с RabbitMQ Exporter.
 
 <br/>
