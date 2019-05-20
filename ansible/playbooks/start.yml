@@ -3,4 +3,4 @@
 - include: gitlab.yml
 - include: monitoring.yml
 - include: create_user.yml
-- include: rqm_mongo.yml
+- include: rmq_mongo.yml

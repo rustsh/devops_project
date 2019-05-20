@@ -12,7 +12,7 @@
 - gitlab.yml;
 - monitoring.yml;
 - create_user.yml;
-- rqm_mongo.yml.
+- rmq_mongo.yml.
 
 ### initial.yml
 На всех машинах выполняется:
@@ -43,7 +43,7 @@
 - создаёт пару SSH-ключей для созданного пользователя на сервере **ci**;
 - записывает открытый ключ этого пользователя в файл **authorized_keys** на серверах **stage** и **prod**.
 
-### rqm_mongo.yml
+### rmq_mongo.yml
 Выполняет роли на серверах **stage** и **prod**:
 - network
 - rabbitmq
