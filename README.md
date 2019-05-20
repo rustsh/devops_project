@@ -2,19 +2,19 @@
 Authors: rustsh & gryaznovart186
 
 ## Оглавление
-- [О проекте](#about)
-    - [Используемые инструменты](#instruments)
-    - [Результат выполнения проекта](#result)
-    - [Репозитории приложения](#repos)
-- [Структура репозитория](#structure)
-- [Запуск проекта](#run)
-- [Удаление проекта](#clean)
-- [История изменений](#changelog)
+- [О проекте](#о-проекте)
+    - [Используемые инструменты](#используемые-инструменты)
+    - [Результат выполнения проекта](#результат-выполнения-проекта)
+    - [Репозитории приложения](#репозитории-приложения)
+- [Структура репозитория](#структура-репозитория)
+- [Запуск проекта](#запуск-проекта)
+- [Удаление проекта](#удаление-проекта)
+- [История изменений](#история-изменений)
 
-## О проекте <a name="about"></a>
+## О проекте
 Данный проект позволяет развернуть приложение Crawler в облачной инфраструктуре.
 
-### Используемые инструменты <a name="instruments"></a>
+### Используемые инструменты
 1. Создание инфраструктуры — [Terraform](https://www.terraform.io/).
 2. Конфигурирование инфраструктуры — [Ansible](https://www.ansible.com/).
 3. Процесс CI/CD — [Gitlab](https://about.gitlab.com/).
@@ -23,7 +23,7 @@ Authors: rustsh & gryaznovart186
     - визуализация — [Grafana](https://grafana.com/);
     - алертинг — [Alertmanager](https://prometheus.io/docs/alerting/alertmanager/) + [Slack](https://slack.com/intl/en-ru/).
 
-### Результат выполнения проекта <a name="result"></a>
+### Результат выполнения проекта
 1. Созданная в Google Cloud Platform инфраструктура:
     - хранилище state-файлов;
     - виртуальные машины для тестового и рабочего окружений, сервера CI/CD и системы сбора обратной связи с внешними статическими IP-адресами;
@@ -45,26 +45,26 @@ Authors: rustsh & gryaznovart186
     - визуализация при помощи Grafana;
     - алертинг и отправка оповещений в канал Slack.
 
-### Репозитории приложения <a name="repos"></a>
+### Репозитории приложения
 - [crawler](https://github.com/rustsh/search_engine_crawler)
 - [ui](https://github.com/rustsh/search_engine_ui)
 
-## Структура репозитория <a name="structure"></a>
-- [terraform](terraform) — папка со скриптами Terraform. [Подробное описание](terraform/README.md);
-- [ansible](ansible) — папка с плейбуками и ролями Ansible. [Подробное описание](ansible/README.md);
+## Структура репозитория
+- [terraform](terraform) — папка со скриптами Terraform ([подробное описание](terraform/README.md));
+- [ansible](ansible) — папка с плейбуками и ролями Ansible ([подробное описание](ansible/README.md));
 - [grafana-dashboards](grafana-dashboards) — папка с дашбордами Grafana в виде JSON-файлов;
-- [app-files](app-files) — папка с файлами для создания контейнеров приложения и запуска конвейера CI/CD в Gitlab. [Описание файлов и конвейера](app-files/README.md);
+- [app-files](app-files) — папка с файлами для создания контейнеров приложения и запуска конвейера CI/CD в Gitlab ([описание файлов и конвейера](app-files/README.md));
 - [readme](readme) — папка с описанием шагов запуска проекта.
 
-## Запуск проекта <a name="run"></a>
+## Запуск проекта
 - [Требования](readme/00_requirements.md)
 - [Предварительные шаги](readme/01_prerequisites.md)
 - [Создание инфраструктуры](readme/02_infrastructure.md)
 - [Подготовка инфраструктуры](readme/03_prepare.md)
 - [Деплой приложения](readme/04_deploy.md)
 
-## Удаление проекта <a name="clean"></a>
+## Удаление проекта
 Для того, чтобы удалить всю созданную инфраструктуру, нужно перейти в папку **terraform/** и выполнить команду `terraform destroy`. Дождавшись завершения её работы, перейти в папку **terraform/storage/** и ещё раз выполнить команду `terraform destroy` для удаления облачного хранилища.
 
-## История изменений <a name="changelog"></a>
+## История изменений
 [CHANGELOG.md](CHANGELOG.md)

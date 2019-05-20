@@ -26,20 +26,20 @@
 ## Результат
 1. На всех виртуальных машинах обновлена операционная система и все предустановленные пакеты, отключены firewalld и SELinux, установлен и запущен Docker.
 2. На машине **ci** установлены и запущены в контейнерах Gitlab и раннер, создана группа для проектов, раннер зарегистрирован и доступен для этой группы.
-3. На машине **monitor** установлены и настроены Prometheus, Grafana и Alertmanager. Для них поднята единая сеть (docker network). Настроена интеграция Alertmanager и Slack.
+3. На машине **monitor** установлены и настроены Prometheus, Grafana и Alertmanager. Для них поднята единая docker-сеть. Настроена интеграция Alertmanager и Slack.
 4. На машине **prod** установлены экспортеры для системы мониторинга: cAdvisor, Node Exporter и RabbitMQ Exporter.
-5. На машинах **ci**, **stage** и **prod** создан пользователь для деплоя приложения. На машине **ci** создана пара SSH-ключей для этого пользователя, открытый ключ скопирован в файл **authorized_keys** на машинах **stage** и **prod**.
-6. На машинах **stage** и **prod** запущены MongoDB и RabbitMQ в контейнерах, в RabbitMQ создана очередь **urls**. Для них, а также для компонентов приложения и экспортеров поднята единая сеть (docker network).
+5. На машинах **ci**, **stage** и **prod** создан пользователь для деплоя приложения. На машине **ci** создана пара SSH-ключей для этого пользователя, публичный ключ скопирован в файл **authorized_keys** на машинах **stage** и **prod**.
+6. На машинах **stage** и **prod** запущены MongoDB и RabbitMQ в контейнерах, в RabbitMQ создана очередь **urls**. Для них, а также для компонентов приложения и экспортеров поднята единая docker-сеть.
 
 ## Как проверить
 1. Открыть перечисленные ниже страницы и убедиться, что указанные сервисы запущены:
-    - http://\<ci-IP\> — Gitlab;
-    - http://\<monitor-IP\>:9090 — Prometheus;
-    - http://\<monitor-IP\>:3000 — Grafana;
-    - http://\<monitor-IP\>:9093 — Alertmanager;
-    - http://\<prod-IP\>:8080 — cAdvisor;
-    - http://\<prod-IP\>:9100 — Node Exporter;
-    - http://\<prod-IP\>:9419 — RabbitMQ Exporter;
+    - **http://\<ci-IP\>** — Gitlab;
+    - **http://\<monitor-IP\>:9090** — Prometheus;
+    - **http://\<monitor-IP\>:3000** — Grafana;
+    - **http://\<monitor-IP\>:9093** — Alertmanager;
+    - **http://\<prod-IP\>:8080** — cAdvisor;
+    - **http://\<prod-IP\>:9100** — Node Exporter;
+    - **http://\<prod-IP\>:9419** — RabbitMQ Exporter;
 2. На странице Gitlab открыть настройки группы, в разделе **CI/CD** раскрыть блок **Runners** и убедиться, что зарегистированный раннер доступен.
 3. Подключиться к виртуальным машинам **stage** и **prod** по SSH и убедиться, что docker-контейнеры с MongoDB и RabbitMQ запущены.
 
